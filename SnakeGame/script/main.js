@@ -4,6 +4,7 @@ let ctx = screen.getContext('2d')
 //Gradea e inicia contagem do array/canvas
 let grid = 16
 let count = 0
+let vel = 12
 //Personagens
 let snake1 = {x:160,y:160,dx:grid,dy:0,com:[],comMax:4}
 let snake2 = {x:160,y:160,dx:grid,dy:0,com:[],comMax:4}
@@ -16,10 +17,11 @@ function getRandomInt(min, max) {
 function refresh() {
   requestAnimationFrame(refresh);
 //Define velocidade
-  if (++count < 12) {
+  if (++count < vel) {
     return
   }
 //Define plano de fundo do canvas
+  vel = 12
   count = 0
   ctx.clearRect(0,0,screen.width,screen.height)
   
@@ -79,6 +81,7 @@ function refresh() {
    ctx.fillRect(com.x1,com.y1,grid, grid)
 //Atribui resultado da colisão do jogado 1 com a maçã
    if (com.x1 == apple.x && com.y1 == apple.y) {
+    vel = vel -2
    	snake1.comMax++
    	apple.x = apple.y = getRandomInt(0, 25)*grid
 
@@ -86,7 +89,7 @@ function refresh() {
    for(let i = index + 1; i < snake1.com.length; i++){
 //Atribui resultado da colisão do jogador 1 com si mesmo
    	if (com.x1 == snake1.com[i].x1 && com.y1 == snake1.com[i].y1) {
-
+        vel = 12
    		snake1.x = snake1.y = 160
    		snake1.com = []
    		snake1.comMax = 4
@@ -101,13 +104,14 @@ function refresh() {
     ctx.fillRect(com.x2,com.y2, grid, grid)
 //Atribui resultado da colisão do jogador 2 com a maçã
   	if (com.x2 == apple.x && com.y2 == apple.y) {
+        vel++
   		snake2.comMax++
   		apple.x = apple.y = getRandomInt(0, 25)*grid
   	}
   	for(let i = index + 1; i < snake2.com.length; i++){
 //Atribui resultado da colisão do jogador 2 com si mesmo
   		if (com.x2 == snake2.com[i].x2 && com.y2 == snake2.com[i].y2) {
-
+            vel = 12
   			snake2.x = snake2.y = 160
   			snake2.com = []
   			snake2.comMax= 4
