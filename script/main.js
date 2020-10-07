@@ -72,11 +72,11 @@ function refresh() {
   }
 //Atribui cor e posição inicial da maçã
   ctx.fillStyle = 'red'
-  ctx.fillRect(apple.x,apple.y,grid-1,grid-1)
+  ctx.fillRect(apple.x,apple.y,grid,grid)
 //Atribui cor e posição inicial do jogador 1
   ctx.fillStyle = 'darkblue'
   snake1.com.forEach(function(com, index){
-   ctx.fillRect(com.x1,com.y1,grid -1, grid -1)
+   ctx.fillRect(com.x1,com.y1,grid, grid)
 //Atribui resultado da colisão do jogado 1 com a maçã
    if (com.x1 == apple.x && com.y1 == apple.y) {
    	snake1.comMax++
@@ -98,7 +98,7 @@ function refresh() {
 //Atribui cor e posição inicial do jogador 2
   ctx.fillStyle = 'darkgreen'
   snake2.com.forEach(function(com, index){
-    ctx.fillRect(com.x2,com.y2, grid-1, grid-1)
+    ctx.fillRect(com.x2,com.y2, grid, grid)
 //Atribui resultado da colisão do jogador 2 com a maçã
   	if (com.x2 == apple.x && com.y2 == apple.y) {
   		snake2.comMax++
