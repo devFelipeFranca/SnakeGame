@@ -15,13 +15,13 @@ function getRandomInt(min, max) {
 }
 //Função de refresh e comprosição de tela de todo conteúdo
 function refresh() {
-  requestAnimationFrame(refresh);
+  requestAnimationFrame(refresh)
+  
 //Define velocidade
   if (++count < vel) {
     return
   }
 //Define plano de fundo do canvas
-  vel = 12
   count = 0
   ctx.clearRect(0,0,screen.width,screen.height)
   
@@ -49,6 +49,7 @@ function refresh() {
   if (snake1.com.length > snake1.comMax) {
   	snake1.com.pop()
   }
+    
 //Delimita a grade de movimento do jogador 2
   snake2.x += snake2.dx
   snake2.y += snake2.dy
@@ -72,16 +73,20 @@ function refresh() {
   if (snake2.com.length > snake2.comMax) {
 	snake2.com.pop()
   }
-//Atribui cor e posição inicial da maçã
+
+  //Atribui cor e posição inicial da maçã
   ctx.fillStyle = 'red'
   ctx.fillRect(apple.x,apple.y,grid,grid)
-//Atribui cor e posição inicial do jogador 1
+
+
+  //Atribui cor e posição inicial do jogador 1
   ctx.fillStyle = 'darkblue'
   snake1.com.forEach(function(com, index){
    ctx.fillRect(com.x1,com.y1,grid, grid)
 //Atribui resultado da colisão do jogado 1 com a maçã
    if (com.x1 == apple.x && com.y1 == apple.y) {
-    vel = vel -2
+    console.log(vel)
+    vel -= 0.5
    	snake1.comMax++
    	apple.x = apple.y = getRandomInt(0, 25)*grid
 
@@ -98,13 +103,16 @@ function refresh() {
    	}
    }
   })
-//Atribui cor e posição inicial do jogador 2
+
+
+  //Atribui cor e posição inicial do jogador 2
   ctx.fillStyle = 'darkgreen'
   snake2.com.forEach(function(com, index){
     ctx.fillRect(com.x2,com.y2, grid, grid)
 //Atribui resultado da colisão do jogador 2 com a maçã
   	if (com.x2 == apple.x && com.y2 == apple.y) {
-        vel++
+      console.log(vel)
+      vel -= 0.5
   		snake2.comMax++
   		apple.x = apple.y = getRandomInt(0, 25)*grid
   	}
@@ -122,6 +130,7 @@ function refresh() {
   })
 
 }
+
 //Evento de Movimentação em games com contexto 2d
 document.addEventListener('keydown', function(e) {
  // Tecla 'A', Esquerda
@@ -165,5 +174,6 @@ document.addEventListener('keydown', function(e) {
     snake2.dx = 0;
   }
 })
+
 
 requestAnimationFrame(refresh);
