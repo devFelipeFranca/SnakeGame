@@ -94,13 +94,23 @@ function refresh() {
    for(let i = index + 1; i < snake1.com.length; i++){
 //Atribui resultado da colisão do jogador 1 com si mesmo
    	if (com.x1 == snake1.com[i].x1 && com.y1 == snake1.com[i].y1) {
-        vel = 12
    		snake1.x = snake1.y = 160
    		snake1.com = []
    		snake1.comMax = 4
    		snake1.dx = grid
    		snake1.dy = 0
    	}
+   }
+   for(let i = index; i < snake2.com.length; i++){
+     if(com.x1 == snake2.com[i].x2 && com.y1 == snake2.com[i].y2){
+        console.log(vel)
+        vel += 0.7
+        snake1.x = snake1.y = 160
+        snake1.com = []
+        snake1.comMax = 4
+        snake1.dx = grid
+        snake1.dy = 0
+     }
    }
   })
 
@@ -119,14 +129,24 @@ function refresh() {
   	for(let i = index + 1; i < snake2.com.length; i++){
 //Atribui resultado da colisão do jogador 2 com si mesmo
   		if (com.x2 == snake2.com[i].x2 && com.y2 == snake2.com[i].y2) {
-            vel = 12
   			snake2.x = snake2.y = 160
   			snake2.com = []
   			snake2.comMax= 4
   			snake2.dx = grid
   			snake2.dy = 0
   		}
-  	}
+    }
+    for(let i = index; i < snake1.com.length; i++){
+      if(com.x2 == snake1.com[i].x1 && com.y2 == snake1.com[i].y1){
+        console.log(vel)
+        vel += 0.7
+        snake2.x = snake2.y = 160
+        snake2.com = []
+        snake2.comMax = 4
+        snake2.dx = grid
+        snake2.dy = 0
+      }
+    }
   })
 
 }
